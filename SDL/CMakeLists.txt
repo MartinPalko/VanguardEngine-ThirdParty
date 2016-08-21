@@ -1,6 +1,10 @@
 # Disabled for now until it's needed.
 SET (DIRECTX OFF)
 
+# Disable add_custom_target, otherwise SDL creates an uninstall target.
+MACRO (add_custom_target )
+ENDMACRO()
+
 # Run default SDL CmakeLists.txt
 add_subdirectory ("${CMAKE_CURRENT_SOURCE_DIR}/SDL2-2.0.4")
 
