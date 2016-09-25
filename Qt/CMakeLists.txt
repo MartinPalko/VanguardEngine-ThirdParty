@@ -14,12 +14,7 @@ else()
 endif()
 
 MACRO(LINK_TO_QT projName)
-	if (QtPrefix)
-		# Find includes in corresponding build directories
-		set(CMAKE_INCLUDE_CURRENT_DIR ON)
-		# Instruct CMake to run moc automatically when needed.
-		set(CMAKE_AUTOMOC ON)
-		
+	if (QtPrefix)	
 		find_package(Qt5Widgets REQUIRED)
 		
 		target_link_libraries(Editor PUBLIC Qt5::Widgets)
@@ -32,13 +27,17 @@ MACRO(LINK_TO_QT projName)
 		
 		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/bin ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 		
+		source_group(automoc FILES "${CMAKE_CURRENT_BINARY_DIR}/${projName}_automoc.cpp" )
+		
 		MESSAGE("Linked Qt to ${projName}")
 	endif()
 ENDMACRO()
 
 #Make macro globally visible
 set(LINK_TO_QT "${LINK_TO_QT}" CACHE INTERNAL "" FORCE)
-#The QtPrefix is needed by the macro
+
+# Instruct CMake to run moc automatically when needed
+set(CMAKE_AUTOMOC ON CACHE INTERNAL "" FORCE)
 
 #Set these here, globally, so we don't need to set them every time we call the macro.
 set("Qt5Widgets_DIR" "${QtPrefix}/lib/cmake/Qt5Widgets/" CACHE INTERNAL "" FORCE)
