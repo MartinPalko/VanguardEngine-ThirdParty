@@ -141,7 +141,8 @@ if(UNIX)
   symbol_prefix()
 endif()
 
-find_program(AWK NAMES gawk awk)
+# Vanguard: Don't use AWK, even if present.
+#find_program(AWK NAMES gawk awk)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
