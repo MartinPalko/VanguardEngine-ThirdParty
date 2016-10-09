@@ -1,6 +1,7 @@
 add_subdirectory("Gainput")
 add_subdirectory("GoogleTest")
 add_subdirectory("Juce")
+add_subdirectory("LibSass")
 add_subdirectory("MoodyCamel")
 #add_subdirectory("OGRE")
 add_subdirectory("SDL")
