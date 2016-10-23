@@ -1,0 +1,11 @@
+
+FILE(GLOB sourceFiles "SDL2_ttf-2.0.14/*.c"  "SDL2_ttf-2.0.14/*.h")
+
+add_library("SDL2_ttf" STATIC "${sourceFiles}")
+
+TARGET_INCLUDE_DIRECTORIES("SDL2_ttf" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/SDL2_ttf-2.0.14")
+
+LINK_DEPENDENCY("SDL2_ttf" "SDL2" false)
+LINK_DEPENDENCY("SDL2_ttf" "freetype" true)
+
+PUT_IN_FOLDER_RELATIVE_ROOT(SDL2_ttf "${CMAKE_CURRENT_SOURCE_DIR}")
