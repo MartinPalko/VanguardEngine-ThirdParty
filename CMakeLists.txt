@@ -11,6 +11,7 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
 endif()
 
+add_subdirectory("Box2D")
 add_subdirectory("FreeType")
 add_subdirectory("Gainput")
 add_subdirectory("GoogleTest")
