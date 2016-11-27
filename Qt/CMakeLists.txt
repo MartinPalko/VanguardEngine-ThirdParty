@@ -6,6 +6,10 @@ if (MSVC)
 		endif()
 	endif()
 endif()
+if (CMAKE_COMPILER_IS_GNUCC) # GCC
+	set(QtPrefix "${CMAKE_CURRENT_SOURCE_DIR}/5.7/gcc_64/" CACHE INTERNAL "" FORCE)
+endif()
+
 
 if (QtPrefix)
 	MESSAGE("Qt has been found at ${QtPrefix}")
@@ -25,8 +29,12 @@ MACRO(LINK_TO_QT projName)
 			MESSAGE("Warning: ${dependency} has no interface includes")
 		endif()	
 		
-		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/bin ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-		
+		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/bin/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/plugins/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/plugins)
+		if (NOT MSVC)
+			add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/lib/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lib)
+		endif()
+
 		source_group(automoc FILES "${CMAKE_CURRENT_BINARY_DIR}/${projName}_automoc.cpp" )
 		
 		MESSAGE("Linked Qt to ${projName}")

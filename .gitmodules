@@ -1,8 +1,8 @@
 [submodule "Gainput/gainput"]
 	path = Gainput/gainput
 	url = https://github.com/MartinPalko/gainput.git
-[submodule "libsass/libsass"]
-	path = libsass/libsass
+[submodule "LibSass/libsass"]
+	path = LibSass/libsass
 	url = https://github.com/sass/libsass.git
 [submodule "Box2D/Box2D"]
 	path = Box2D/Box2D
