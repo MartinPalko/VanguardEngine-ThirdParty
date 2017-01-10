@@ -30,7 +30,7 @@ MACRO(LINK_TO_QT projName)
 		endif()	
 		
 		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/bin/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/plugins/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/plugins)
+		add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/plugins/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/qt_plugins)
 		if (NOT MSVC)
 			add_custom_command(TARGET ${projName} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${QtPrefix}/lib/ ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lib)
 		endif()
